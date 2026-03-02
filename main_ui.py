@@ -37,7 +37,7 @@ elif page == "Simulation":
                         
                         "Select Invsetment mode:",
                         options = ['PER MARKET','TOTAL CAPITAL'],
-                        index = 0
+                        index = 0,
                         key="investment_mode_v2"
                         )
     st.write(f"The machine currently sees:{capital_options}")
@@ -201,6 +201,7 @@ else:
 
     if st.session_state.get('thread_spawned', False):
         st.session_state['thread_spawned'] = False
+
 
 
 
