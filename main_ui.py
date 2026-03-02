@@ -33,13 +33,12 @@ if page == "Data":
 elif page == "Simulation":
     st.title("Simulated Trading Ground")
     st.subheader("Run a Simulation Trade based on the Historical Data of the Market")
-    capital_options = st.multiselect(
+    capital_options = st.radio(
                         
                         "Select Invsetment mode:",
                         options = ['PER MARKET','TOTAL CAPITAL'],
-                        default=['PER MARKET'],
-                        key = "investment_mode_selector"
-                    )
+                        index = 0)
+  
     assume_capital = st.number_input("Enter Hypothetical Starting Capital (ex: 10000)")
     share = st.number_input("Enter Hypothetical Starting Shares (ex: 10)")
     if st.button("Start Simulation"):
@@ -199,4 +198,5 @@ else:
 
     if st.session_state.get('thread_spawned', False):
         st.session_state['thread_spawned'] = False
+
 
