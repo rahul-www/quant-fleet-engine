@@ -15,7 +15,7 @@ st.sidebar.title("Command Centre")
 st.sidebar.write("Welcome")
 
 page = st.sidebar.radio("Select a Mode:",
-                        ["Data","Simulation","Radar"])
+                        ["Data","Simulation"])
 
 target_symbol = st.text_input("Enter multiple symbols seperated by commas","INFY.NS").split(',')
 ## Data Vault
@@ -160,48 +160,9 @@ elif page == "Simulation":
                
   
                             
-## Radar(Notification System) 
 
-def radar_background_check(symbol):
-    while st.session_state.get('radar_active',False):                   
-       telegram_radar(symbol)
-       print(f"Radar Scanning {target_symbol} data in the Background")
-       time.sleep(3600)
     
-if page == 'Radar':
-    st.subheader("Live Market Radar")
-    
-    radar_target = st.multiselect(
-        "Select MARKETS to Scan and Notify:",
-        options = ["TATASTEEL.NS", "RELIANCE.NS", "TCS.NS", "HDFCBANK.NS", "TATAMOTORS.NS", "AAPL", "NVDA", "TSLA"],
-        default= ["TCS.NS","NVDA"]
-    )
-        
 
-    radar_toggle = st.toggle('Enable Live Radar', key='radar_active')
-    
-    
-    if radar_toggle:
-        st.success("Radar ON - Background scanning initiated.")
-    else:
-        st.warning("Radar OFF - Background scanning stopped.")
-    
-    
-    if radar_toggle:
-        
-        if not st.session_state.get('thread_spawned', False):
-            st.session_state['thread_spawned'] = True 
-            
-            
-            #radar_thread = threading.Thread(target=radar_background_check, args=(radar_target,))
-            #add_script_run_ctx(radar_thread)
-            #radar_thread.start()
-            
-    else:
-    
-        if st.session_state.get('thread_spawned', False):
-            st.session_state['thread_spawned'] = False
-    
 
 
 
