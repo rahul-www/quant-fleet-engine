@@ -37,6 +37,7 @@ elif page == "Simulation":
                         
                         "Select Invsetment mode:",
                         options = ['PER MARKET','TOTAL CAPITAL'],
+                        index = 0
                         key="investment_mode_v2"
                         )
   
@@ -63,7 +64,7 @@ elif page == "Simulation":
                 for symbol in target_symbol:
                     symbol = symbol.strip()
                     n = len(target_symbol)
-                    if capital_options == 'PER MARKET':
+                    if capital_options == 'PER MARKET' or index = 0:
                         simulation_capital = assume_capital
                     elif capital_options == 'TOTAL CAPITAL':
                         simulation_capital = assume_capital / n    
@@ -199,6 +200,7 @@ else:
 
     if st.session_state.get('thread_spawned', False):
         st.session_state['thread_spawned'] = False
+
 
 
 
