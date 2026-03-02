@@ -30,7 +30,7 @@ if page == "Data":
             conn.close()
             st.subheader(f"{symbol}")
             display_df = df.tail(50).reset_index(drop=True)
-            display_df = display_df.index + 1
+            display_df.index = display_df.index + 1
             st.dataframe(display_df)
 ## BackTest Analysis
 elif page == "Simulation":
@@ -165,6 +165,7 @@ elif page == "Simulation":
                             
 
     
+
 
 
 
