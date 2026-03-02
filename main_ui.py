@@ -40,6 +40,7 @@ elif page == "Simulation":
                         index = 0
                         key="investment_mode_v2"
                         )
+    st.write(f"The machine currently sees:{capital_options}")
   
     assume_capital = st.number_input("Enter Hypothetical Starting Capital (ex: 10000)")
     share = st.number_input("Enter Hypothetical Starting Shares (ex: 10)")
@@ -64,11 +65,11 @@ elif page == "Simulation":
                 for symbol in target_symbol:
                     symbol = symbol.strip()
                     n = len(target_symbol)
-                    if capital_options == 'PER MARKET' or index = 0:
+                    if capital_options == 'PER MARKET':
                         simulation_capital = assume_capital
                     elif capital_options == 'TOTAL CAPITAL':
                         simulation_capital = assume_capital / n    
- 
+                   
                     st.subheader(f"{symbol}")
                     final_cap,total_profit,trades,logs,catch_df,catch_b_dates,catch_b_price,catch_s_dates,catch_s_price,catch_f_dates,catch_f_price = backtest_process(simulation_capital,share,symbol)
                     total_portfolio_profit += total_profit
@@ -200,6 +201,7 @@ else:
 
     if st.session_state.get('thread_spawned', False):
         st.session_state['thread_spawned'] = False
+
 
 
 
