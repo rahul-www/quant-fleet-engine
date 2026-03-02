@@ -27,8 +27,9 @@ if page == "Data":
             data_base = update_vault(symbol)
             conn = sqlite3.connect('quant_data.db')
             df = pd.read_sql_query(f"SELECT * FROM [{symbol}]",conn)
+            conn.close()
             st.subheader(f"{symbol}")
-            st.dataframe(df)      
+            st.dataframe(df.tail(50))      
 ## BackTest Analysis
 elif page == "Simulation":
     st.title("Simulated Trading Ground")
@@ -42,8 +43,8 @@ elif page == "Simulation":
                         )
     st.write(f"The machine currently sees:{capital_options}")
   
-    assume_capital = st.number_input("Enter Hypothetical Starting Capital (ex: 10000)")
-    share = st.number_input("Enter Hypothetical Starting Shares (ex: 10)")
+    assume_capital = st.number_input("Enter Hypothetical Starting Capital (ex: 10000)",key="sim_capital")
+    share = st.number_input("Enter Hypothetical Starting Shares (ex: 10)",key="sim_share")
     if st.button("Start Simulation"):
         with st.spinner("Analyzing for User Data....."):
                 st.title("Portfolio Scoreboard")
@@ -162,6 +163,7 @@ elif page == "Simulation":
                             
 
     
+
 
 
 
