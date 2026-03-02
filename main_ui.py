@@ -38,6 +38,7 @@ elif page == "Simulation":
                         "Select Invsetment mode:",
                         options = ['PER MARKET','TOTAL CAPITAL'],
                         default=['PER MARKET'],
+                        key = "investment_mode_selector"
                     )
     assume_capital = st.number_input("Enter Hypothetical Starting Capital (ex: 10000)")
     share = st.number_input("Enter Hypothetical Starting Shares (ex: 10)")
@@ -198,3 +199,4 @@ else:
 
     if st.session_state.get('thread_spawned', False):
         st.session_state['thread_spawned'] = False
+
