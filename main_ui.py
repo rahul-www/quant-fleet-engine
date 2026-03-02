@@ -29,7 +29,9 @@ if page == "Data":
             df = pd.read_sql_query(f"SELECT * FROM [{symbol}]",conn)
             conn.close()
             st.subheader(f"{symbol}")
-            st.dataframe(df.tail(50).reset_index(drop=True))      
+            display_df = df.tail(50).reset_index(drop=True)
+            display_df = display_df.index + 1
+            st.dataframe(display_df)
 ## BackTest Analysis
 elif page == "Simulation":
     st.title("Simulated Trading Ground")
@@ -163,6 +165,7 @@ elif page == "Simulation":
                             
 
     
+
 
 
 
