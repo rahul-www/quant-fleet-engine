@@ -29,6 +29,7 @@ if page == "Data":
             df = pd.read_sql_query(f"SELECT * FROM [{symbol}]",conn)
             conn.close()
             st.subheader(f"{symbol}")
+            st.write("Displaying The Last 50 Days DATA")
             display_df = df.tail(50).reset_index(drop=True)
             display_df.index = display_df.index + 1
             st.dataframe(display_df)
@@ -165,6 +166,7 @@ elif page == "Simulation":
                             
 
     
+
 
 
 
