@@ -178,29 +178,30 @@ if page == 'Radar':
     )
         
 
-radar_toggle = st.toggle('Enable Live Radar', key='radar_active')
-
-
-if radar_toggle:
-    st.success("Radar ON - Background scanning initiated.")
-else:
-    st.warning("Radar OFF - Background scanning stopped.")
-
-
-if radar_toggle:
+    radar_toggle = st.toggle('Enable Live Radar', key='radar_active')
     
-    if not st.session_state.get('thread_spawned', False):
-        st.session_state['thread_spawned'] = True 
+    
+    if radar_toggle:
+        st.success("Radar ON - Background scanning initiated.")
+    else:
+        st.warning("Radar OFF - Background scanning stopped.")
+    
+    
+    if radar_toggle:
         
-        
-        radar_thread = threading.Thread(target=radar_background_check, args=(radar_target,))
-        add_script_run_ctx(radar_thread)
-        radar_thread.start()
-        
-else:
-
-    if st.session_state.get('thread_spawned', False):
-        st.session_state['thread_spawned'] = False
+        if not st.session_state.get('thread_spawned', False):
+            st.session_state['thread_spawned'] = True 
+            
+            
+            #radar_thread = threading.Thread(target=radar_background_check, args=(radar_target,))
+            #add_script_run_ctx(radar_thread)
+            #radar_thread.start()
+            
+    else:
+    
+        if st.session_state.get('thread_spawned', False):
+            st.session_state['thread_spawned'] = False
+    
 
 
 
